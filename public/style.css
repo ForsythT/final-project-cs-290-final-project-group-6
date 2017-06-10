@@ -1,0 +1,174 @@
+body {
+  font-family: Roboto, Helvetica, sans-serif;
+  margin: 0;
+  background-color: lightgray;
+}
+
+a {
+  text-decoration: none;
+}
+
+.site-title {
+  background-color: orangered;
+  margin: 0;
+  padding: 10px 20px;
+  font-size: 60px;
+  font-weight: 100;
+  color: white;
+}
+
+.navbar {
+  background-color: white;
+  font-size: 20px;  
+}
+
+.navlist {
+  margin: 0 0 0 20px;
+  padding: 0;
+}
+
+.navitem {
+  display: inline-block;
+}
+
+a {
+  color: black;
+}
+
+a:hover,
+a:focus {
+  color: orangered;
+}
+
+a:focus {
+  outline: none;
+}
+
+.navlink a {
+  padding: 8px 10px;
+  display: inline-block;
+}
+
+.navlink.active {
+  box-shadow: inset 0 -3px orangered;
+}
+
+.navbar-search {
+  float: right;
+  padding: 0;
+  margin-right: 20px;
+  line-height: 38px;
+}
+
+#navbar-search-input {
+  padding: 4px;
+  font-size: 16px;
+  background-color: lightgray;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+}
+
+#navbar-search-input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+#navbar-search-button {
+  margin-left: -5px;
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+#navbar-search-button:hover {
+  color: orangered;
+}
+
+#navbar-search-button:focus {
+  color: orangered;
+  outline: none;
+}
+
+.book-posts-container {
+  margin: 10px 10%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-post {
+  flex: 0 1 40%;
+  display: flex;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.post-content {
+  flex: 1 1 80%;
+  margin-left: 10px;
+}
+
+.book-content {
+  margin: 0;
+}
+
+.book-img-container {
+  margin-top: 4px;
+  
+}
+
+.book-title {
+  margin-top: 0px;
+  font-size: 150%;
+}
+
+.book-edition .book-author .book-condition .book-price {
+  margin-top: 8px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.book-price {
+  font-size: 150%;
+}
+
+.seller-content {
+  font-size: 120%;
+}
+
+.post-tags {
+  font-size = 80%;
+}
+
+#create-book-post-button {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  height: 100px;
+  width: 100px;
+  border: solid 1px black;
+  border-radius: 2px;
+  font-size: 50px;
+  background-color: orangered;
+  color: white;
+  cursor: pointer;
+}
+
+#create-book-post-button:hover,
+#create-book-post-button:focus {
+  right: 0px;
+  bottom: 0px;
+  height: 115px;
+  width: 115px;
+  font-size: 55px;
+  background-color: limegreen;
+  border: solid 1px black;
+}
+
+#create-book-post-button:focus {
+  outline: none;
+}
