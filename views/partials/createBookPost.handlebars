@@ -1,0 +1,59 @@
+<button id="create-book-post-button">Create a listing</button>
+
+<div id="modal-backdrop" class="hidden"></div>
+<div id="create-book-post-modal" class="hidden">
+  <div class="modal-dialog">
+
+    <div class="modal-header">
+      <h3>Post Your Book</h3>
+      <button type="button" class="modal-close-button">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="book-input-element">
+        <label for="book-url-input">Picture URL</label>
+        <input type="text" id="book-url-input">
+      </div>
+      <div class="book-input-element">
+        <label for="book-title-input">Title</label>
+        <input type="text" id="book-title-input">
+      </div>
+      <div class="book-input-element">
+        <label for="book-edition-input">Edition</label>
+        <input type="text" id="book-edition-input">
+      </div>
+      <div class="book-input-element">
+        <label for="book-author-input">Author</label>
+        <input type="text" id="book-author-input">
+      </div>
+      <div class="book-input-element">
+        <label for="book-price-input">Asking Price</label>
+        <input type="text" id="book-price-input">
+      </div>
+      <div class="book-input-element">
+        <label for="book-course-input">Course</label>
+        <input type="text" id="book-course-input">
+      </div>
+      <div class="book-input-element">
+        <label>Condition</label>
+        <select id="book-condition-list">
+          <option value="1">Brand New</option>
+          <option value="2">Like New</option>
+          <option value="3">Very Good</option>
+          <option value="4">Good</option>
+          <option value="5">Ok</option>
+        </select>
+      </div>
+      <div class="book-input-element">
+        <label for="book-details-input">Additional Details</label>
+        <textarea id="book-details-input"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="modal-cancel-button">Cancel</button>
+      <button type="button" class="modal-accept-button">Post Listing</button>
+    </div>
+
+  </div>
+</div>
