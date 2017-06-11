@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res, next) {
   var templateArgs = {
     bookPostData: data,
-    butto: true
+    button: true
   }
   res.render('bookPostPage', templateArgs)
 });
