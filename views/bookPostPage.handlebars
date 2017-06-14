@@ -1,11 +1,12 @@
 {{> header}}
 
 <main class="book-posts-container">
+	{{>createBookPost}}
+
   {{#each bookPostData}}
     {{> bookPost}}
   {{/each}}
+  
+
 
 </main>
-{{#if button}}
-  {{> createBookPost}}
-{{/if}}

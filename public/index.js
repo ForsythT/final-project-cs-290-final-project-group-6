@@ -1,12 +1,16 @@
 var allBookPosts = [];
 
+console.log("Hello World From Index");
+
 function showCreateBookModal()
 {
 	var createBookModal = document.getElementById("create-book-post-modal");
 	var modalBackdrop = document.getElementById("modal-backdrop");
 	
-	createBookModal.classList.remove("hidden");
-	modalBackdrop.classList.remove("hidden");
+
+	
+	createBookModal.classList.remove('hidden');
+	modalBackdrop.classList.remove('hidden');
 }
 
 function closeCreateBookModal()
@@ -24,18 +28,18 @@ function clearBookInputValues()
 {
 	var bookInputElems = document.getElementsByClassName("book-input-element");
 	var bookConditionInput = document.getElementById("book-condition-list");
-	for (var i = 0; i < bookInputElems.length; i++)
+	var bookDetailsInput = document.getElementById("book-details-input");
+	bookDetailsInput = "";
+	bookConditionInput.value = 1;
+	for (var i = 0; i < 6; i++)
 	{
 		var input = bookInputElems[i].querySelector('input', 'textarea');
-		input.value = "";
-		bookConditionInput.value = 1;
+			input.value = "";
 	}
-	
 }
 
 function generateNewBookPost(bookUrl, bookTitle, bookEdition, bookAuthor, bookCondition, bookPrice, bookPostDate, bookCourse, bookDetails, sellerName, sellerRating, sellerInfo)
 {
-	var bookPostTemplate = Handlebars.templates.bookPost;
 	var bookData = 
 	{
 		url: bookUrl,
@@ -51,38 +55,71 @@ function generateNewBookPost(bookUrl, bookTitle, bookEdition, bookAuthor, bookCo
 		rating: sellerRating,
 		info: sellerInfo
 	};
-	return bookPostTemplate(bookData);
-	
+	return bookData;
 }
 
-function insertNewBookPost()
-{
-	var bookUrl = document.getElementById("book-url-input");
-	var bookTitle = document.getElementById("book-title-input");
-	var bookEdition = document.getElementById("book-edition-input");
-	var bookAuthor = document.getElementById("book-author-input");
-	var bookCondition = getCondition();
-	var bookPrice = document.getElementById("book-price-input");
-	var bookPostDate = getPostDate();
-	var bookCourse = document.getElementById("book-course-input");
-	var bookDetails = document.getElementById("book-details-input");
-  var sellerName = "Seller Name Here";
-  var sellerRating = 1;
-  var sellerInfo = "Seller Info Here";
+function insertNewBookPost(){
 	
-	if (bookUrl && bookTitle && bookEdition && bookAuthor && bookPrice && bookCourse && bookDetails)
-	{
-		var newBookPost = generateNewBookPost(bookUrl, bookTitle, bookEdition, bookAuthor, bookCondition, bookPrice, bookPostDate, bookCourse, bookDetails, sellerName, sellerRating, sellerInfo);
-		var bookContainer = document.querySelector(".book-posts-container");
-		bookContainer.insertAdjacentHTML("beforeend", newBookPost);
-		allBookPosts.push(newBookPost);
-		
-		closeCreateBookModal();
-	}
-	else
-	{
-		alert("You must enter something into all fields!");
-	}	
+	var bookUrl = document.getElementById("book-url-input").value;
+	var bookTitle = document.getElementById("book-title-input").value;
+	var bookEdition = document.getElementById("book-edition-input").value;
+	var bookAuthor = document.getElementById("book-author-input").value;
+	var bookCondition = getCondition();
+	var bookPrice = document.getElementById("book-price-input").value;
+	var bookPostDate = getPostDate();
+	var bookCourse = document.getElementById("book-course-input").value;
+	var bookDetails = document.getElementById("book-details-input").value;
+	var newBookPost = generateNewBookPost(bookUrl, bookTitle, bookEdition, bookAuthor, bookCondition, bookPrice, bookPostDate, bookCourse, bookDetails);
+	console.log(bookUrl + bookTitle + bookEdition + bookAuthor + bookCondition + bookPrice + bookPostDate + bookCourse + bookDetails);
+	
+	storeBook(newBookPost, function (err){
+		if(err){
+			alert("Unable to upload book to database. Received:\n\n" + err);
+		}
+		else{
+			var templateArgs = {
+				title: bookTitle,
+				edition: bookEdition,
+				author: bookAuthor,
+				condition: bookCondition,
+				price: bookPrice
+			};				
+		}
+	});
+	console.log("BEFORE CLOSE");
+	closeCreateBookModal();
+	console.log("AFTER CLOSE");
+}
+	
+	
+	// if (bookTitle && bookEdition && bookAuthor && bookPrice && bookCourse && bookDetails)
+	// {
+		// var newBookPost = generateNewBookPost(bookUrl, bookTitle, bookEdition, bookAuthor, bookCondition, bookPrice, bookPostDate, bookCourse, bookDetails);
+		// var bookContainer = document.querySelector(".book-posts-container");
+		// bookContainer.insertAdjacentHTML("beforeend", newBookPost);
+		// allBookPosts.push(newBookPost);	
+		// closeCreateBookModal();
+	// }
+	// else
+	// {
+		// alert("You must enter something into all fields!");
+	// }	
+
+function storeBook(bookData, callback){
+	var postURL = "/addBook";
+	var postRequest = new XMLHttpRequest();
+	postRequest.open('POST',postURL);
+	postRequest.setRequestHeader('Content-Type','application/json');
+	
+	postRequest.addEventListener('load',function(event){
+		var error;
+		if(event.target.status != 200){
+			error = event.target.response;
+		}
+		callback(error);
+	});
+	
+	postRequest.send(JSON.stringify(bookData));
 }
 
 function getCondition()
@@ -123,14 +160,15 @@ function doBookSearch()
 
 window.addEventListener("DOMContentLoaded", function () 
 {
+	console.log("DOM CONTENT LOADED");
 	var bookPostsCollection = document.getElementsByClassName("book-post");
 	for (var i = 0; i < bookPostsCollection.length; i++)
 	{
 		allBookPosts.push(bookPostsCollection[i]);
 	}
 	
-	var createBookPostButton = document.getElementById("create-book-post-button");
-	createBookPostButton.addEventListener("click", showCreateBookModal);
+	var createBookPostButton = document.getElementById('create-book-post-button');
+	createBookPostButton.addEventListener('click', showCreateBookModal);
 	
 	var modalCloseButton = document.getElementsByClassName("modal-close-button");
 	modalCloseButton[0].addEventListener("click", closeCreateBookModal);
