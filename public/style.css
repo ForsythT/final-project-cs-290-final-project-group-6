@@ -8,6 +8,19 @@ a {
   text-decoration: none;
 }
 
+a {
+  color: black;
+}
+
+a:hover,
+a:focus {
+  color: orangered;
+}
+
+a:focus {
+  outline: none;
+}
+
 .site-title {
   background-color: orangered;
   margin: 0;
@@ -29,19 +42,6 @@ a {
 
 .navitem {
   display: inline-block;
-}
-
-a {
-  color: black;
-}
-
-a:hover,
-a:focus {
-  color: orangered;
-}
-
-a:focus {
-  outline: none;
 }
 
 .navlink a {
@@ -70,7 +70,7 @@ a:focus {
 
 #navbar-search-input:focus {
   outline: none;
-  background-color: #fff;
+  background-color: white;
 }
 
 #navbar-search-button {
@@ -171,4 +171,132 @@ a:focus {
 
 #create-book-post-button:focus {
   outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#modal-backdrop {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+#create-book-post-modal {
+  background-color: whitesmoke;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  overflow: scroll;    
+}
+
+.modal-header {
+  position: relative;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.modal-close-button {
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: 5px;
+  font-size: 30px;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.book-input-element {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.book-input-element label {
+  font-weight: 600;
+  flex: 1 75px;
+  margin-right: 10px;
+}
+
+.book-input-element input,
+.book-input-element textarea {
+  flex: 6 200px;
+  padding: 8px;
+  font-size: 20px;
+  border: 1px solid black;
+}
+
+#book-condition-list {
+  flex: 6 200px;
+  padding 8px;
+  font-size: 20px;
+  border: 1px solid black;
+}
+
+.book-input-element textarea {
+  min-height: 50px;
+}
+
+.error-container {
+  text-align: center;
+}
+
+.error-container h2 {
+  margin: 10px;
+  font-size: 100px;
+  font-weight: 100;
+}
+
+.error-container h3 {
+  margin: 10px;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.modal-footer button {
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.modal-footer .modal-cancel-button:hover {
+  background-color: red;
+  color: white;
+}
+
+.modal-footer .modal-accept-button {
+  background-color: orangered;
+  color: white;
+}
+
+.modal-footer .modal-accept-button:hover {
+  background-color: limegreen;
+  color: black;
 }
